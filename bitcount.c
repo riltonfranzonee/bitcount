@@ -1,10 +1,11 @@
 #include <assert.h>
 #include <stdio.h>
 
-unsigned int bitcount(unsigned int number) {
-    unsigned count = 0;
-    for (int i = 0; i < sizeof(number) * 8; i++) {
-        count += (number >> i) & 0b1;
+int bitcount(signed int number) {
+    int count = 0;
+    while (number) {
+        number &= (number - 1); // added explenation on how this works on page 51 of K&R
+        count++;
     }
     return count;
 }
